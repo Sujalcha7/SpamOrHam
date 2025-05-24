@@ -26,6 +26,7 @@ node_modules/
 
 # Node.js lock files
 package-lock.json
+**/package-lock.json
 # Distribution / packaging
 .Python
 build/
