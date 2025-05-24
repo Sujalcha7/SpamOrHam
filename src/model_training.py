@@ -47,7 +47,7 @@ def save_model(model, output_path):
 
 def main():
     # Paths
-    data_path = 'data/raw/emails.csv'
+    data_path = 'data/raw/spam_Emails_data.csv'
     model_path = 'models/svm_spam_model.pkl'
     
     # Load and preprocess data

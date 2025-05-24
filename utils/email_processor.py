@@ -11,13 +11,25 @@ nltk.download('stopwords', quiet=True)
 stop_words = set(stopwords.words('english'))
 stemmer = PorterStemmer()
 
-def load_vocabulary(dataset_path):
+def load_vocabulary(texts):
     """
-    Load the vocabulary (list of words) from the dataset columns.
+    Create vocabulary from texts or load from dataset columns.
     """
-    data = pd.read_csv(dataset_path, encoding='latin-1')
-    # Exclude 'Email No.' and assume the last column is the label
-    vocab = data.columns.drop(['Email No.', data.columns[-1]]).tolist()
+    # Create vocabulary from texts
+    all_words = set()
+    for text in texts:
+        # Handle NaN or non-string values
+        if pd.isna(text) or not isinstance(text, str):
+            continue
+            
+        text = text.lower()
+        text = re.sub(r'[^\w\s]', '', text)  # Remove punctuation
+        words = text.split()
+        words = [stemmer.stem(word) for word in words if word not in stop_words]
+        all_words.update(words)
+    
+    vocab = sorted(list(all_words))  # Convert to sorted list for consistency
+    print(f"Vocabulary size: {len(vocab)} words")
     return vocab
 
 def process_email(email_text, vocab):
