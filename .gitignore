@@ -17,6 +17,7 @@ models/*
 __pycache__/
 *.pyc
 venv/
+senv/
 # Ignore Jupyter notebook checkpoints
 notebooks/.ipynb_checkpoints/
 
