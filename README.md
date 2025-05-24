@@ -33,6 +33,9 @@ Dataset
 Source: Kaggle (emails.csv)
 Description: Contains word frequency counts for emails, with labels (0=ham, 1=spam).
 
+model training
+https://drive.google.com/drive/folders/1N-PdR3u8A73PrPDhnNC-icjuT6OhtYW9?usp=sharing
+
 Usage
 
 Preprocess data: src/data_preprocessing.py
