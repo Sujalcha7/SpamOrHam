@@ -21,7 +21,11 @@ senv/
 # Ignore Jupyter notebook checkpoints
 notebooks/.ipynb_checkpoints/
 
+# Node.js dependencies
+node_modules/
 
+# Node.js lock files
+package-lock.json
 # Distribution / packaging
 .Python
 build/
