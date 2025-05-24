@@ -57,3 +57,4 @@ def get_top_features(email_text, vocab, top_n=5):
     # Sort by frequency
     top_features = sorted(vocab_counts.items(), key=lambda x: x[1], reverse=True)[:top_n]
     return top_features
+
