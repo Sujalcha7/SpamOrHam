@@ -1,6 +1,6 @@
 # Spam Email Detection
 
-A Python project to classify emails as spam or ham using a Support Vector Machine (SVM) and a Kaggle dataset (`emails.csv`).
+A Python project to classify emails as spam or ham using a Support Vector Machine (SVM) and a Kaggle dataset (`spam_Emails_data.csv`).
 
 ---
 
@@ -9,7 +9,7 @@ A Python project to classify emails as spam or ham using a Support Vector Machin
 ```
 spam_email_detection/
 ├── data/
-│   ├── raw/emails.csv         # Kaggle dataset
+│   ├── raw/spam_Emails_data.csv         # Kaggle dataset
 │   └── processed/             # Preprocessed data (optional)
 ├── models/                    # Trained models
 ├── src/                       # Python scripts
