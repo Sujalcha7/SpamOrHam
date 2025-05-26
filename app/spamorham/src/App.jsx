@@ -13,7 +13,7 @@ import {
     Progress,
     useToast,
 } from "@chakra-ui/react";
-import { WarningTwoIcon, CheckCircleIcon } from "@chakra-ui/icons"; // Changed icons
+import { WarningTwoIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import axios from "axios";
 
@@ -59,82 +59,115 @@ function App() {
 
     return (
         <ChakraProvider>
-            <Container maxW="container.md" py={8}>
-                <VStack spacing={6} align="stretch">
-                    <Heading>Spam Email Detector</Heading>
-                    <Text>
-                        Enter an email text to check if it's spam or ham.
-                    </Text>
-
-                    <Textarea
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Type your email here..."
-                        size="lg"
-                        minH="200px"
-                    />
-
-                    <Button
-                        colorScheme="blue"
-                        onClick={handleCheck}
-                        isLoading={loading}
-                        loadingText="Checking..."
+            <Box
+                position="fixed"
+                top={0}
+                left={0}
+                right={0}
+                bottom={0}
+                bg="blue.50"
+                zIndex={0}
+            >
+                <Container
+                    w="100vw"
+                    h="100vh"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    centerContent
+                >
+                    <Box
+                        w={["100%", "100%", "100%", "100%"]}
+                        bg="white"
+                        boxShadow="lg"
+                        borderRadius="lg"
+                        p={8}
                     >
-                        Check
-                    </Button>
+                        <VStack spacing={6} align="stretch" w="100%">
+                            <Heading textAlign="center">
+                                Spam Email Detector
+                            </Heading>
+                            <Text textAlign="center">
+                                Enter an email text to check if it's spam or
+                                ham.
+                            </Text>
 
-                    {result && (
-                        <VStack spacing={4} align="stretch">
-                            <Alert
-                                status={
-                                    result.label === "Spam"
-                                        ? "error"
-                                        : "success"
-                                }
-                                variant="subtle"
-                                borderRadius="md"
+                            <Textarea
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Type your email here..."
+                                size="lg"
+                                minH="200px"
+                            />
+
+                            <Button
+                                colorScheme="blue"
+                                onClick={handleCheck}
+                                isLoading={loading}
+                                loadingText="Checking..."
                             >
-                                {result.label === "Spam" ? (
-                                    <WarningTwoIcon color="red.500" />
-                                ) : (
-                                    <CheckCircleIcon color="green.500" />
-                                )}
-                                <Text fontWeight="bold" ml={2}>
-                                    Prediction: {result.label}
-                                </Text>
-                            </Alert>
+                                Check
+                            </Button>
 
-                            <Box>
-                                <Text mb={2}>
-                                    Confidence:{" "}
-                                    {(result.confidence * 100).toFixed(2)}%
-                                </Text>
-                                <Progress
-                                    value={result.confidence * 100}
-                                    colorScheme={
-                                        result.label === "Spam"
-                                            ? "red"
-                                            : "green"
-                                    }
-                                />
-                            </Box>
+                            {result && (
+                                <VStack spacing={4} align="stretch">
+                                    <Alert
+                                        status={
+                                            result.label === "Spam"
+                                                ? "error"
+                                                : "success"
+                                        }
+                                        variant="subtle"
+                                        borderRadius="md"
+                                    >
+                                        {result.label === "Spam" ? (
+                                            <WarningTwoIcon color="red.500" />
+                                        ) : (
+                                            <CheckCircleIcon color="green.500" />
+                                        )}
+                                        <Text fontWeight="bold" ml={2}>
+                                            Prediction: {result.label}
+                                        </Text>
+                                    </Alert>
 
-                            <Box>
-                                <Text fontWeight="bold" mb={2}>
-                                    Top contributing words:
-                                </Text>
-                                <List spacing={2}>
-                                    {result.top_words.map(([word, freq]) => (
-                                        <ListItem key={word}>
-                                            • {word}: {freq}
-                                        </ListItem>
-                                    ))}
-                                </List>
-                            </Box>
+                                    <Box>
+                                        <Text mb={2}>
+                                            Confidence:{" "}
+                                            {(result.confidence * 100).toFixed(
+                                                2
+                                            )}
+                                            %
+                                        </Text>
+                                        <Progress
+                                            value={result.confidence * 100}
+                                            colorScheme={
+                                                result.label === "Spam"
+                                                    ? "red"
+                                                    : "green"
+                                            }
+                                        />
+                                    </Box>
+
+                                    <Box>
+                                        <Text fontWeight="bold" mb={2}>
+                                            Top contributing words:
+                                        </Text>
+                                        <List spacing={2}>
+                                            {result.top_words.map(
+                                                ([word, freq]) => (
+                                                    <ListItem key={word}>
+                                                        • {word}: {freq}
+                                                    </ListItem>
+                                                )
+                                            )}
+                                        </List>
+                                    </Box>
+                                </VStack>
+                            )}
                         </VStack>
-                    )}
-                </VStack>
-            </Container>
+                    </Box>
+                </Container>
+            </Box>
         </ChakraProvider>
     );
 }

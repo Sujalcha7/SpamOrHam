@@ -11,15 +11,6 @@ nltk.download('stopwords', quiet=True)
 stop_words = set(stopwords.words('english'))
 stemmer = PorterStemmer()
 
-def load_vocabulary(dataset_path):
-    """
-    Load the vocabulary (list of words) from the dataset columns.
-    """
-    data = pd.read_csv(dataset_path, encoding='latin-1')
-    # Exclude 'Email No.' and assume the last column is the label
-    vocab = data.columns.drop(['Email No.', data.columns[-1]]).tolist()
-    return vocab
-
 def process_email(email_text, vocab):
     """
     Convert email text into a feature vector based on the dataset's vocabulary.
